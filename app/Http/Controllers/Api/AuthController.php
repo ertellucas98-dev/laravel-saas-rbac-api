@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ class AuthController extends Controller
     /**
      * @OA\Post(
      *   path="/api/auth/register",
+     *   operationId="authRegister",
      *   summary="Register a new user",
      *   tags={"Auth"},
      *   @OA\RequestBody(
@@ -25,10 +27,7 @@ class AuthController extends Controller
      *       @OA\Property(property="password_confirmation", type="string", format="password", minLength=8)
      *     )
      *   ),
-     *   @OA\Response(
-     *     response=201,
-     *     description="User registered successfully",
-     *   ),
+     *   @OA\Response(response=201, description="User registered successfully"),
      *   @OA\Response(response=422, description="Validation error")
      * )
      */
