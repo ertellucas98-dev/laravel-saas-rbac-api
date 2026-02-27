@@ -5,19 +5,20 @@ namespace App;
 use OpenApi\Annotations as OA;
 
 /**
- * @OA\OpenApi(
- *   @OA\Info(
+ * @OA\Info(
  *     title="Laravel SaaS RBAC API",
  *     version="1.0.0",
  *     description="API documentation for the multi-tenant SaaS RBAC system"
- *   )
  * )
  *
- * @OA\PathItem(
- *   path="/api"
+ * @OA\SecurityScheme(
+ *     securityScheme="sanctum",
+ *     type="http",
+ *     scheme="bearer",
+ *     bearerFormat="JWT"
  * )
  */
 class OpenApi
 {
-    // This class is only used for OpenAPI annotations.
+    // Swagger global configuration
 }
