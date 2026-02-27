@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +18,13 @@ Route::get('/status', function () {
     return [
         'status' => 'ok',
     ];
+});
+
+Route::prefix('auth')->group(function () {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout'])
+        ->middleware('auth:sanctum');
+    Route::get('userAutenticate', [AuthController::class, 'userAutenticate'])
+        ->middleware('auth:sanctum');
 });
