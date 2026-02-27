@@ -28,6 +28,9 @@ class SaasSeeder extends Seeder
             'company_id' => $company->id,
         ]);
 
+        // Ensure the owner has the appropriate role
+        $owner->assignRole('owner');
+
         // Create sample clients for the company
         $clients = collect([
             'Client One',
