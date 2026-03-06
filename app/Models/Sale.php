@@ -17,6 +17,7 @@ class Sale extends Model
      */
     protected $fillable = [
         'client_id',
+        'approved_at',
     ];
 
     /**

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\SaleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +29,29 @@ Route::prefix('auth')->group(function () {
         ->middleware('auth:sanctum');
     Route::get('userAutenticate', [AuthController::class, 'userAutenticate'])
         ->middleware('auth:sanctum');
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Clients
+    Route::get('clients', [ClientController::class, 'index'])
+        ->middleware('permission:clients.view');
+
+    Route::post('clients', [ClientController::class, 'store'])
+        ->middleware('permission:clients.create');
+
+    Route::put('clients/{client}', [ClientController::class, 'update'])
+        ->middleware('permission:clients.update');
+
+    Route::delete('clients/{client}', [ClientController::class, 'destroy'])
+        ->middleware('permission:clients.update');
+
+    // Sales
+    Route::get('sales', [SaleController::class, 'index'])
+        ->middleware('permission:reports.view');
+
+    Route::post('sales', [SaleController::class, 'store'])
+        ->middleware('permission:sales.create');
+
+    Route::post('sales/{sale}/approve', [SaleController::class, 'approve'])
+        ->middleware('permission:sales.approve');
 });
