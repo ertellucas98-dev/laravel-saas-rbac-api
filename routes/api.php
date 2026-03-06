@@ -33,25 +33,13 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     // Clients
-    Route::get('clients', [ClientController::class, 'index'])
-        ->middleware('permission:clients.view');
-
-    Route::post('clients', [ClientController::class, 'store'])
-        ->middleware('permission:clients.create');
-
-    Route::put('clients/{client}', [ClientController::class, 'update'])
-        ->middleware('permission:clients.update');
-
-    Route::delete('clients/{client}', [ClientController::class, 'destroy'])
-        ->middleware('permission:clients.update');
+    Route::get('clients', [ClientController::class, 'index']);
+    Route::post('clients', [ClientController::class, 'store']);
+    Route::put('clients/{client}', [ClientController::class, 'update']);
+    Route::delete('clients/{client}', [ClientController::class, 'destroy']);
 
     // Sales
-    Route::get('sales', [SaleController::class, 'index'])
-        ->middleware('permission:reports.view');
-
-    Route::post('sales', [SaleController::class, 'store'])
-        ->middleware('permission:sales.create');
-
-    Route::post('sales/{sale}/approve', [SaleController::class, 'approve'])
-        ->middleware('permission:sales.approve');
+    Route::get('sales', [SaleController::class, 'index']);
+    Route::post('sales', [SaleController::class, 'store']);
+    Route::post('sales/{sale}/approve', [SaleController::class, 'approve']);
 });
